@@ -14,7 +14,14 @@ class AccountsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor( element ) {
+    if (!element) {
+      throw new Error('Элемент не передан!');
+    }
 
+    this.element = element;
+
+    this.registerEvents();
+    this.update();
   }
 
   /**
@@ -25,7 +32,15 @@ class AccountsWidget {
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
-
+    const createNewAccount = document.querySelector('.create-account');
+    createNewAccount.addEventListener('click', () => {
+      const newAccountModal = App.getModal('createAccount');
+      newAccountModal.open();
+    })
+    const accountsList = document.querySelectorAll('.account');
+    accountsList.forEach((elem) => {
+      elem.addEventListener('click', (e) => this.onSelectAccount(e))
+    })
   }
 
   /**
@@ -39,7 +54,16 @@ class AccountsWidget {
    * метода renderItem()
    * */
   update() {
-
+    const user = User.current();
+    if (user) {
+      Account.list(user.id, (err, response) => {
+        if (response.success) {
+          this.clear();
+          this.renderItem(response.data);
+        }
+      });
+    }
+    
   }
 
   /**
@@ -48,7 +72,10 @@ class AccountsWidget {
    * в боковой колонке
    * */
   clear() {
-
+    const accountList = this.element.querySelectorAll('.account');
+    accountList.forEach((elem) => {
+      elem.remove();
+    })
   }
 
   /**
@@ -58,8 +85,20 @@ class AccountsWidget {
    * счёта класс .active.
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
-  onSelectAccount( element ) {
+  onSelectAccount(e) {
+    e.stopPropagation();
+    const accountsList = this.element.querySelectorAll('.account');
+    const liEl = e.target.closest('.account');
+    console.log(liEl.dataset);
+    accountsList.forEach((elem) => {
+      console.log(elem);
+      elem.classList.remove('active');
+      if (liEl.dataset.id === elem.dataset.id) {
+        elem.classList.add('active');
+      }
+    })
 
+    App.showPage( 'transactions', { account_id: liEl.dataset.id });
   }
 
   /**
@@ -67,8 +106,13 @@ class AccountsWidget {
    * отображения в боковой колонке.
    * item - объект с данными о счёте
    * */
-  getAccountHTML(item){
-
+  getAccountHTML(item) {
+    this.element.insertAdjacentHTML('beforeEnd', `<li class="account" data-id="${item.id}">
+     <a href="#">
+         <span>${item.name}</span> /
+         <span>${item.sum}</span>
+     </a>
+     </li>`);
   }
 
   /**
@@ -78,6 +122,9 @@ class AccountsWidget {
    * и добавляет его внутрь элемента виджета
    * */
   renderItem(data){
-
+    data.forEach((elem) => {
+      this.getAccountHTML(elem);
+    });
+    this.registerEvents();
   }
 }
