@@ -38,16 +38,6 @@
       "name": "Сбер",
       "user_id": "xdylbi7uclwunpjx3",
       "id": "xdylbi9oolwwbjzf7"
-    },
-    {
-      "name": "Аватар",
-      "user_id": "xdylbi7uclwunpjx3",
-      "id": "xdylbi77klwwbx8mm"
-    },
-    {
-      "name": "Vlad",
-      "user_id": "xdylbi7uclwunpjx3",
-      "id": "xdylbi288lwwhezd3"
     }
   ],
   "transactions": [
@@ -187,42 +177,6 @@
       "user_id": "1"
     },
     {
-      "id": "xdylbiel8lwzdbc0e",
-      "type": "income",
-      "name": "Всегда говори да",
-      "sum": 546,
-      "account_id": "xdylbicaslwwb9cw6",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T19:32:40.717Z"
-    },
-    {
-      "id": "xdylbi7twlwzde1lf",
-      "type": "income",
-      "name": "Никита",
-      "sum": 3000,
-      "account_id": "xdylbicaslwwb9cw6",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T19:34:47.186Z"
-    },
-    {
-      "id": "xdylbi64glwzdgkvp",
-      "type": "income",
-      "name": "Никита",
-      "sum": 546,
-      "account_id": "xdylbicaslwwb9cw6",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T19:36:45.492Z"
-    },
-    {
-      "id": "xdylbi1c4lwzdhgpa",
-      "type": "income",
-      "name": "Всегда говори да",
-      "sum": 150,
-      "account_id": "xdylbicaslwwb9cw6",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T19:37:26.733Z"
-    },
-    {
       "id": "xdylbi7cklwzdizj2",
       "type": "income",
       "name": "Всегда говори да",
@@ -241,103 +195,40 @@
       "created_at": "2024-06-03T19:39:29.531Z"
     },
     {
-      "id": "xdylbib7olwzdlay2",
+      "id": "xdylbi3cclx4xsood",
       "type": "income",
-      "name": "Vlad",
+      "name": "Никита",
       "sum": 3000,
       "account_id": "xdylbicaslwwb9cw6",
       "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T19:40:25.897Z"
+      "created_at": "2024-06-07T17:04:53.484Z"
     },
     {
-      "id": "xdylbinolwzdmz97",
+      "id": "xdylbi5cglx4xte98",
       "type": "income",
-      "name": "Всегда говори да",
-      "sum": 1500,
+      "name": "Никита",
+      "sum": 3000,
       "account_id": "xdylbicaslwwb9cw6",
       "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T19:41:44.058Z"
+      "created_at": "2024-06-07T17:05:26.635Z"
     },
     {
-      "id": "xdylbicnwlwzdu0zn",
+      "id": "xdylbi9zclx4xtojx",
       "type": "income",
-      "name": "Всегда говори да",
+      "name": "Никита",
+      "sum": 3000,
+      "account_id": "xdylbicaslwwb9cw6",
+      "user_id": "xdylbi7uclwunpjx3",
+      "created_at": "2024-06-07T17:05:39.980Z"
+    },
+    {
+      "id": "xdylbi5cslxej0rcf",
+      "type": "income",
+      "name": "hbhghgghjghgj",
       "sum": 150,
-      "account_id": "xdylbicaslwwb9cw6",
+      "account_id": "xdylbi9oolwwbjzf7",
       "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T19:47:12.899Z"
-    },
-    {
-      "id": "xdylbi99klwzeau0g",
-      "type": "income",
-      "name": "Vlad",
-      "sum": 3000,
-      "account_id": "xdylbicaslwwb9cw6",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T20:00:17.007Z"
-    },
-    {
-      "id": "xdylbi1r0lwzeb16j",
-      "type": "expense",
-      "name": "Vlad",
-      "sum": 3000,
-      "account_id": "xdylbicaslwwb9cw6",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T20:00:26.298Z"
-    },
-    {
-      "id": "xdylbidhwlwzeba1d",
-      "type": "expense",
-      "name": "Vlad",
-      "sum": 1000,
-      "account_id": "xdylbicaslwwb9cw6",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T20:00:37.776Z"
-    },
-    {
-      "id": "xdylbieh0lwzeblwh",
-      "type": "expense",
-      "name": "Vlad",
-      "sum": 10000,
-      "account_id": "xdylbicaslwwb9cw6",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T20:00:53.152Z"
-    },
-    {
-      "id": "xdylbiduklwziopjd",
-      "type": "income",
-      "name": "Дмитрий",
-      "sum": 5456,
-      "account_id": "xdylbi77klwwbx8mm",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T22:03:02.856Z"
-    },
-    {
-      "id": "xdylbi4bglwzj37ls",
-      "type": "expense",
-      "name": "Vlad",
-      "sum": 1500,
-      "account_id": "xdylbicaslwwb9cw6",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T22:14:19.455Z"
-    },
-    {
-      "id": "xdylbi8lslwzj3jt7",
-      "type": "expense",
-      "name": "Аватар",
-      "sum": 3000,
-      "account_id": "xdylbicaslwwb9cw6",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T22:14:35.274Z"
-    },
-    {
-      "id": "xdylbiddclwzj4kf6",
-      "type": "income",
-      "name": "jhjkh",
-      "sum": 6464,
-      "account_id": "xdylbicaslwwb9cw6",
-      "user_id": "xdylbi7uclwunpjx3",
-      "created_at": "2024-06-03T22:15:22.721Z"
+      "created_at": "2024-06-14T10:08:57.710Z"
     }
   ]
 }

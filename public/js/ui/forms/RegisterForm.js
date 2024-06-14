@@ -11,8 +11,6 @@ class RegisterForm extends AsyncForm {
    * */
   onSubmit(data) {
     User.register(data, (err, response) => {
-      console.log('response', response);
-      console.log('err', err);
       if (response && response.success) {
         User.setCurrent(response.user);
         App.setState('user-logged');

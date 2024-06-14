@@ -10,7 +10,7 @@ class User {
    * локальном хранилище.
    * */
   static setCurrent(user) {
-    localStorage.user = JSON.stringify(user);
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
   /**
@@ -26,7 +26,7 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    return JSON.parse(localStorage.user);
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   /**
@@ -35,9 +35,14 @@ class User {
    * */
   static fetch(callback) {
     createRequest({
-      method: 'GET', 
-      url: this.URL + '/current', 
+      method: 'GET',
+      url: this.URL + '/current',
       callback: (err, response) => {
+        if (response.user) {
+          this.setCurrent(response.user)
+        } else {
+          this.unsetCurrent()
+        }
         callback(err, response);
       }
     })
@@ -56,6 +61,11 @@ class User {
       responseType: 'json',
       data,
       callback: (err, response) => {
+        if (response.user) {
+          this.setCurrent(response.user)
+        } else {
+          this.unsetCurrent()
+        }
         callback(err, response);
       }
     });
@@ -73,11 +83,14 @@ class User {
       url: this.URL + '/register',
       data,
       callback: (err, response) => {
+        if (response.user) {
+          this.setCurrent(response.user)
+        } 
         callback(err, response);
       }
     });
   }
-  
+
   /**
    * Производит выход из приложения. После успешного
    * выхода необходимо вызвать метод User.unsetCurrent
@@ -88,7 +101,10 @@ class User {
       method: 'POST',
       responseType: 'json',
       callback: (err, response) => {
-        callback(response);
+        if (response.success) {
+          this.unsetCurrent()
+        }
+        callback(err, response);
       }
     });
   }

@@ -17,14 +17,14 @@ class TransactionsPage {
 
     this.element = element;
     this.registerEvents();
-    console.log(this.element);
+    this.lastOptions;
   }
 
   /**
    * Вызывает метод render для отрисовки страницы
    * */
   update() {
-    this.render();
+    this.render(this.lastOptions);
   }
 
   /**
@@ -34,16 +34,13 @@ class TransactionsPage {
    * TransactionsPage.removeAccount соответственно
    * */
   registerEvents() {
-    const removeAccountBtn = this.element.querySelector('.remove-account');
-    removeAccountBtn.addEventListener('click', () => {
-      this.removeAccount();
-    })
-
-    const transactionRemoveCol = this.element.querySelectorAll('.transaction__remove');
-    transactionRemoveCol.forEach((elem) => {
-      elem.addEventListener('click', (e) => {
-        this.removeTransaction(e);
-      })
+    this.element.addEventListener('click', (e) => {
+      if (e.target.closest('.transaction__remove')) {
+        this.removeTransaction(e.target.closest('.transaction__remove').dataset.id);
+        return
+      } else if (e.target.closest('.remove-account')) {
+        this.removeAccount(e.target.closest('.remove-account').dataset.id);
+      }
     })
   }
 
@@ -56,16 +53,21 @@ class TransactionsPage {
    * либо обновляйте только виджет со счетами и формы создания дохода и расхода
    * для обновления приложения
    * */
-  removeAccount(e) {
+  removeAccount(id) {
+    if (!this.lastOptions) {
+      return;
+    }
+
     let result = confirm('Удалить аккаунт?')
 
     if (result) {
-      Account.remove(e.target.dataset.id, (err, response) => {
-        if (response.success) {
+      Account.remove({id: this.lastOptions.account_id}, (err, response) => {
+        if (response.success) 
+          this.lastOptions = null;
           this.clear();
           App.updateWidgets();
           App.updateForms();
-        }
+        
       })
     }
   }
@@ -77,14 +79,14 @@ class TransactionsPage {
    * либо обновляйте текущую страницу (метод update) и виджет со счетами
    * */
   removeTransaction(id) {
-    let result = confirm('Удалить аккаунт?')
+    let result = confirm('Вы действительно хотите удалить эту транзакцию?')
 
     if (result) {
-      Account.remove(e.target.dataset.id, (err, response) => {
+      Transaction.remove({id}, (err, response) => {
         if (response.success) {
+          App.update();
           this.clear();
-          App.updateWidgets();
-          App.updateForms();
+          this.update();
         }
       })
     }
@@ -100,20 +102,17 @@ class TransactionsPage {
     if (!options) {
       return;
     }
-    
+    this.lastOptions = options;
     Account.get(options.account_id, (err, response) => {
       if (response.success) {
-        console.log(response);
-        this.renderTitle(response.name);
-        Transaction.list(response, (err, response) => {
-          console.log(response);
-          if (response.success) {
-            console.log(options);
-            this.renderTransactions(response.id);
-          }
-        });
+        this.renderTitle(response.data.name);
       }
     })
+    Transaction.list({ "account_id": options.account_id }, (err, response) => {
+      if (response.success) {
+        this.renderTransactions(response.data);
+      }
+    });
   }
 
   /**
@@ -146,7 +145,7 @@ class TransactionsPage {
    * item - объект с информацией о транзакции
    * */
   getTransactionHTML(item) {
-    `<div class="transaction transaction_${item.type} row">
+    return `<div class="transaction transaction_${item.type} row">
     <div class="col-md-7 transaction__details">
       <div class="transaction__icon">
           <span class="fa fa-money fa-2x"></span>
@@ -174,6 +173,9 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data) {
-    this.getTransactionHTML(data);
+    const listSection = this.element.querySelector('.content');
+    listSection.innerHTML = data.reduce((acc,cur)=>{
+      return acc += this.getTransactionHTML(cur)
+     },'');
   }
 }

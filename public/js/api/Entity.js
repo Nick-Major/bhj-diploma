@@ -10,7 +10,13 @@ class Entity {
    * */
   static URL = '';
   static list(data, callback){
-    createRequest({method: 'GET', url: this.URL, data, callback});
+    let url = this.URL + '?';
+    for (let key in data) {
+      url += `${key}=${data[key]}&` 
+    }
+    
+    createRequest({method: 'GET', url, callback});
+    // createRequest({method: 'GET', url: this.URL, data, callback});
   }
 
   /**
